@@ -1,0 +1,13 @@
+1. pip install django-celery-beat
+2. python manage.py migrate
+3. add 'django-celery-beat' into installed apps
+
+--Commads--
+1. to run from settings
+celery -A proj beat -l INFO
+
+2. to run from admin
+celery -A proj beat -l INFO --scheduler django_celery_beat.schedulers.DatabaseScheduler
+
+3. running flower commad
+celery -A proj flower

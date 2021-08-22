@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Progress Bar</title>
+</head>
+<body>
+<h1>Place bar here</h1>
+
+<div class='progress-wrapper'>
+  <div id='progress-bar' class='progress-bar' style="background-color: #68a9ef; width: 0%;">&nbsp;</div>
+</div>
+<div id="progress-bar-message">Waiting for progress to start...</div>
+
+<!-- <div id="celery-result"></div> -->
+
+<script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+
+<script type="text/javascript">
+
+
+	// with custom success and error
+	/*document.addEventListener("DOMContentLoaded", function () {
+
+		function customSuccess(progressBarElement, progressBarMessageElement) {
+		    progressBarElement.innerHTML = (
+		     '<figure class="image"><img src="https://buildwithdjango.com/static/projects/images/aww-yeah.jpg"></figure>'
+		    )
+		    progressBarElement.style.backgroundColor = '#fff';
+		    progressBarMessageElement.innerHTML = 'success!'
+		}
+
+		function customError(progressBarElement, progressBarMessageElement) {
+		    progressBarElement.innerHTML = (
+		     'OooopppPPpppSSSSssss.... Ran into Error'
+		    )
+		    progressBarElement.style.backgroundColor = '#fff';
+		    progressBarMessageElement.innerHTML = 'shucks.'
+		}
+
+		var taskUrl = "{% url 'celery_progress:task_status' task_id %}";
+		CeleryProgressBar.initProgressBar(taskUrl, {
+		    onSuccess: customSuccess,
+		    onError: customError,
+		});
+	});*/
+
+
+	// vanilla JS version
+	document.addEventListener("DOMContentLoaded", function () {
+	  var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+	  CeleryProgressBar.initProgressBar(progressUrl);
+	});
+
+
+
+	// custom progressbar
+	// JQuery
+/*	document.addEventListener("DOMContentLoaded", function () {
+		var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+
+		function customResult(resultElement, result) {
+		  $( resultElement ).append(
+		    $('<p>').text('Sum of all seconds is ' + result)
+		  );
+		}
+
+		$(function () {
+		  CeleryProgressBar.initProgressBar(progressUrl, {
+		    onResult: customResult,
+		  })
+		});
+	}*/
+</script>
+
+</body>
+</html>
