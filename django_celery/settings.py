@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_celery',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': 'tabipass',
         'PORT': 3306,
