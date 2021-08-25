@@ -16,12 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Local enviornment name
-local_env = os.path.join(BASE_DIR, 'celery_env/Scripts')
-
-# production enviornment name
-server_env = os.path.join(BASE_DIR, 'celery_env/bin')
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -83,6 +77,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_celery.wsgi.application'
 
+# Database
+    # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_celery',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 'tabipass',
+        'PORT': 3306,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -122,41 +129,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if local_env:   
-
+if DEBUG:   
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
     ]
 
-    # Database
-    # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'db_celery',
-            'HOST': 'localhost',
-            'USER': 'root',
-            'PASSWORD': 'tabipass',
-            'PORT': 3306,
-        }
-    }
-
-elif server_env:
-
+else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-    # Database
-    # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'OPTIONS': {
-                'read_default_file': '/etc/mysql/django_celery.cnf',
-            }
-        }
-    }
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
