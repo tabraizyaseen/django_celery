@@ -8,6 +8,19 @@ from django_celery_results.models import TaskResult
 # Create your views here.
 def home(request):
 
+	BASE_DIR = Path(__file__).resolve().parent.parent
+
+	# Local enviornment name
+	local_env = os.path.join(BASE_DIR, 'celery_env/Scripts')
+
+	# production enviornment name
+	server_env = os.path.join(BASE_DIR, 'celery_env/bin')
+
+	if local_env:
+		print("local server running")
+	elif server_env:
+		print("production server running")
+
 	if request.method == 'POST':
 		name = request.POST['name']
 		email = request.POST['email']
