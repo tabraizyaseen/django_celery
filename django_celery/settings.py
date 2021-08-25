@@ -89,7 +89,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'tabipass',
         'PORT': 3306,
-    }
+    },
     'server': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
