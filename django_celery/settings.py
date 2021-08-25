@@ -90,6 +90,12 @@ DATABASES = {
         'PASSWORD': 'tabipass',
         'PORT': 3306,
     }
+    'server': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/django_celery.cnf',
+        }
+    }
 }
 
 
