@@ -84,7 +84,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_celery',
-        'HOST': '%',
         'USER': 'tabi',
         'PASSWORD': 'tabipass',
         'OPTIONS': {'charset': 'utf8mb4'},
