@@ -83,11 +83,9 @@ WSGI_APPLICATION = 'django_celery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_celery',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'tabipass',
-        'PORT': 3306,
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/django_celery.cnf',
+        },
     }
 }
 
@@ -128,14 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-if DEBUG:   
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
