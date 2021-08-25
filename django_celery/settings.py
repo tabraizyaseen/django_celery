@@ -83,9 +83,11 @@ WSGI_APPLICATION = 'django_celery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/django_celery.cnf',
-        },
+        'NAME': 'db_celery',
+        'HOST': '%',
+        'USER': 'tabi'
+        'PASSWORD': 'tabipass',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
